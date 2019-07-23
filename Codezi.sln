@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codezi.WebApi", "Codezi\Codezi.WebApi.csproj", "{7CFE5108-EFF8-4139-8A26-DFC97DA52A34}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Domain", "1. Domain", "{83DE7B34-B8E3-407B-B7AE-FD43A6B822C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Storage", "2. Storage", "{526E94B7-7911-4B42-9D36-897CD183A291}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Business", "3. Business", "{EDBCB193-A3D4-4EC9-A597-74C186CA395A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. API", "4. API", "{9376AC66-F4BF-4850-8174-75078ACF1C5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codezi.Domain", "Codezi.Domain\Codezi.Domain.csproj", "{E1AD4F33-0FE1-4CB6-B564-0152758967DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codezi.Data.EF", "Codezi.Data.EF\Codezi.Data.EF.csproj", "{EF3934D5-1CFF-4C8A-8282-CB4CC8656A94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codezi.Application", "Codezi.Application\Codezi.Application.csproj", "{D6CC0BF2-E4D8-4633-92CB-097237E0B791}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Client", "5. Client", "{9D4CC7F0-4B5B-48E4-85CE-C9C50E8EDBDE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CFE5108-EFF8-4139-8A26-DFC97DA52A34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CFE5108-EFF8-4139-8A26-DFC97DA52A34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CFE5108-EFF8-4139-8A26-DFC97DA52A34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CFE5108-EFF8-4139-8A26-DFC97DA52A34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1AD4F33-0FE1-4CB6-B564-0152758967DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1AD4F33-0FE1-4CB6-B564-0152758967DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1AD4F33-0FE1-4CB6-B564-0152758967DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1AD4F33-0FE1-4CB6-B564-0152758967DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF3934D5-1CFF-4C8A-8282-CB4CC8656A94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF3934D5-1CFF-4C8A-8282-CB4CC8656A94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF3934D5-1CFF-4C8A-8282-CB4CC8656A94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF3934D5-1CFF-4C8A-8282-CB4CC8656A94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6CC0BF2-E4D8-4633-92CB-097237E0B791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6CC0BF2-E4D8-4633-92CB-097237E0B791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6CC0BF2-E4D8-4633-92CB-097237E0B791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6CC0BF2-E4D8-4633-92CB-097237E0B791}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7CFE5108-EFF8-4139-8A26-DFC97DA52A34} = {9376AC66-F4BF-4850-8174-75078ACF1C5B}
+		{E1AD4F33-0FE1-4CB6-B564-0152758967DD} = {83DE7B34-B8E3-407B-B7AE-FD43A6B822C7}
+		{EF3934D5-1CFF-4C8A-8282-CB4CC8656A94} = {526E94B7-7911-4B42-9D36-897CD183A291}
+		{D6CC0BF2-E4D8-4633-92CB-097237E0B791} = {EDBCB193-A3D4-4EC9-A597-74C186CA395A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E53B7017-D23D-45B1-9A34-F8224BDE559D}
+	EndGlobalSection
+EndGlobal
