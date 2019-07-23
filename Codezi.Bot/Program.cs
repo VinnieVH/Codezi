@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Codezi.Application.Commands;
-using Codezi.Application.Services;
-using Codezi.Domain.Services;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 
 namespace Codezi.Bot
 {
@@ -14,16 +12,26 @@ namespace Codezi.Bot
     {
         private DiscordSocketClient _discordClient;
         private CommandService _commandService;
-        private readonly string _token;
+        private static IConfigurationRoot Configuration { get; set; }
 
-        public Program()
-        {
-            _token = "NjAzMTUxMzg4NDU3MDQxOTIw.XTbPnQ.ipe554OmiJaSe6QH70XblQNM_BA";
-        }
         private static void Main() => new Program().MainAsync().GetAwaiter().GetResult();
 
         private async Task MainAsync()
         {
+            var devEnvironmentVariable = Environment.GetEnvironmentVariable("NETCORE_ENVIRONMENT");
+            var isDevelopment = string.IsNullOrEmpty(devEnvironmentVariable) ||
+                                devEnvironmentVariable.ToLower() == "development";
+            var builder = new ConfigurationBuilder();
+
+            if (isDevelopment)
+            {
+                builder.AddUserSecrets<Program>();
+            }
+
+            Configuration = builder.Build();
+
+            var token = Configuration["Discord:BotToken"];
+
             _discordClient = new DiscordSocketClient(new DiscordSocketConfig
             {
                 LogLevel = LogSeverity.Debug
@@ -41,7 +49,7 @@ namespace Codezi.Bot
             _discordClient.Ready += ClientReady;
             _discordClient.Log += ClientLog;
 
-            await _discordClient.LoginAsync(TokenType.Bot, _token);
+            await _discordClient.LoginAsync(TokenType.Bot, token);
             await _discordClient.StartAsync();
 
             await Task.Delay(-1);
@@ -68,7 +76,7 @@ namespace Codezi.Bot
             if (message.HasStringPrefix("!", ref position) ||
                 message.HasMentionPrefix(_discordClient.CurrentUser, ref position))
             {
-                var result = await _commandService.ExecuteAsync(ctx, position, null, MultiMatchHandling.Exception);
+                var result = await _commandService.ExecuteAsync(ctx, position, null);
                 if (!result.IsSuccess)
                 {
                     Console.WriteLine($"{DateTime.Now} at command service. Something went wrong with executing the command. Text: {ctx.Message.Content} Error: {result.ErrorReason}");
