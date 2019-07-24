@@ -15,6 +15,7 @@ namespace Codezi.WebApi
     {
         private static IConfigurationRoot Configuration { get; set; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -22,14 +23,13 @@ namespace Codezi.WebApi
             builder.AddUserSecrets<Startup>();
             Configuration = builder.Build();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.Configure<SecretSettings>(settings =>
-                {
-                    settings.ApiToken = Configuration["SecretSettings:ApiToken"];
-                    settings.DefaultConnection = Configuration["SecretSettings:DefaultConnection"];
-                });
+            services.AddSingleton(Configuration);
+            services.AddSingleton<IConfiguration>(Configuration);
+            //ApiKey = Configuration["Secrets:ApiToken"];
+            //ConnectionString = Configuration["Secrets:ConnectionString"];
             services.AddScoped<IStockService, StockService>();
             services.AddDbContext<CodeziContext>(options =>
-                options.UseSqlServer(""));
+                options.UseSqlServer(Configuration.GetSection("Secrets:ConnectionString").Value));
             services.BuildServiceProvider();
         }
 

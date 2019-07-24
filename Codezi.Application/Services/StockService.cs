@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Codezi.Domain.Configuration;
 using Codezi.Domain.Models;
 using Codezi.Domain.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
@@ -14,20 +15,20 @@ namespace Codezi.Application.Services
     public class StockService : IStockService
     {
         private readonly HttpClient _httpClient = new HttpClient();
-        private readonly SecretSettings _settings;
+        private readonly string _apiKey;
 
-        public StockService(IOptions<SecretSettings> settings)
+        public StockService(IConfiguration configuration)
         {
             _httpClient.BaseAddress = new Uri("https://cloud.iexapis.com/");
             _httpClient.DefaultRequestHeaders.Clear();
-            _settings = settings.Value;
+            _apiKey = configuration.GetSection("Secrets:ApiToken").Value;
         }
 
         public async Task<Company> GetCompanyBySymbolAsync(string symbol)
         {
             var request = new HttpRequestMessage(
                 HttpMethod.Get,
-                $"stable/stock/{symbol}/company?token={_settings.ApiToken}");
+                $"stable/stock/{symbol}/company?token={_apiKey}");
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             using (var response = await _httpClient.SendAsync(request,
