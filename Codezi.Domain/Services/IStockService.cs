@@ -10,5 +10,6 @@ namespace Codezi.Domain.Services
     public interface IStockService
     {
         Task<Company> GetCompanyBySymbolAsync(string symbol);
+        Task<Company> GetIntradayByMinuteAsync(string symbol);
     }
 }
